@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  h1= title
+  ul
+    li
+      h3 テストコードを通じたリファクタリング・よいコード設計
+    li
+      h3 CICDの最適化
+    li
+      h3 ツール・エディタの習熟
+    li
+      h3 データ分析ツール開発
+  p 上記4点はmoveeが挑戦している項目です。
+  p 一見すると共通点は見当たりませんが、実は共通しています。それはシステムの中身をよりよくできるということです。テストコードはアジャイル開発を実現し、積極的なリファクタリングを可能にします。リファクタリングが積極的にできればコード設計にも貢献できます。ツール・エディタの習熟で人間では漏れてしまうチェックや繰り返し作業の自動化を実現します。シンプルなデータ分析ツール開発は導入したシステムの状態を丸裸にして、改善点を洗い出します。
+  p この４点を通じてシステムをスピーディーによりよくしていきます。
+  h2 事業内容
+  ul
+    li 時間単位のシステム開発
+    li シンプルなデータ分析ツールの販売
+  h2 会社情報
+  p 株式会社movee
+  p 〒810-0001　福岡県福岡市中央区天神2丁目3-10　天神パインクレスト716
+  p 050-5538-0382 &nbsp; info@movee.jp
+  h2 メンバー
+    each dataItem in githubData
+      h3= dataItem.key
+      p= dataItem.technique
+      p Github
+      ul
+        each item in dataItem.data
+          li
+            a(href=item.html_url, target="_blank", rel="noopener noreferrer")= item.name
+            | &nbsp;
+            | updated_at:#{item.updated_at.slice(0, 10)}
