@@ -22,7 +22,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Change directory to src
-      run: pwd
+      run: cd one-line-app/src
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
