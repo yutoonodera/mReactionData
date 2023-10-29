@@ -28,6 +28,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+        cache-dependency-path: ./src/package-lock.json
     - name: Change directory to src and run npm commands
       run: |
         npm ci
