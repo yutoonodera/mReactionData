@@ -2,7 +2,7 @@ version: '3'
 services:
     app:
         # 起動イメージ
-        image: node:16
+        image: node:18
         # 環境変数
         environment:
             - DEBUG=app:*
