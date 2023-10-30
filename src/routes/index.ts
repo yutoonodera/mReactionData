@@ -20,9 +20,7 @@ router.get('/', async function (req:any, res:any, next:any) {
 
         // Githubデータを取得
         const githubData = await githubApi.getGithubData();
-        console.log('aaaa');
         // デバッグ情報をコンソールに出力
-        console.log('githubData:', githubData);
         // レンダリング時に Github データをテンプレートに渡す
         res.render('index', { title: 'movee', githubData });
     } catch (error) {

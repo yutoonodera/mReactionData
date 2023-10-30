@@ -26,9 +26,7 @@ router.get('/', function (req, res, next) {
             const githubApi = new GithubApi(profile);
             // Githubデータを取得
             const githubData = yield githubApi.getGithubData();
-            console.log('aaaa');
             // デバッグ情報をコンソールに出力
-            console.log('githubData:', githubData);
             // レンダリング時に Github データをテンプレートに渡す
             res.render('index', { title: 'movee', githubData });
         }
