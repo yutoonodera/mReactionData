@@ -23,7 +23,6 @@ export class GithubApi {
 
         for (const key in profileInfo) {
 
-            console.log('key:'+key);
             if (Object.prototype.hasOwnProperty.call(profileInfo, key)) {
                 let githubName = profileInfo[key].githubName;
                 let dirPath = path.join(__dirname, '..', 'assets', 'data');
@@ -37,7 +36,6 @@ export class GithubApi {
                         //githubDataArray.push(cachedData.data);
                         githubDataArray.push(cachedData);
                     } else {
-                        console.log('5:');
                         let url = `https://api.github.com/users/${githubName}/repos?sort=pushed_at`;
                         let response = await axios.get(url);
 
@@ -53,9 +51,7 @@ export class GithubApi {
                         //githubDataArray.push(response.data);
                         githubDataArray.push(dataToCache);
                     }
-                    console.log('6:');
                 } catch (error) {
-                    console.log('7:');
                     // エラーハンドリング
                     console.error('GitHub APIエラー:', error);
                     throw error;

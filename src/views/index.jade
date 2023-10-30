@@ -25,8 +25,9 @@ block content
   h2 メンバー
     each dataItem in githubData
       h3= dataItem.key
+      ul
       p= dataItem.technique
-      p Github
+      p Github(Public Repo Only)
       ul
         each item in dataItem.data
           li

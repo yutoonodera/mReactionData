@@ -34,7 +34,6 @@ class GithubApi {
             const cacheDuration = 24 * 60 * 60 * 1000; // キャッシュの有効期限 (24時間)
             const githubDataArray = [];
             for (const key in profileInfo) {
-                console.log('key:' + key);
                 if (Object.prototype.hasOwnProperty.call(profileInfo, key)) {
                     let githubName = profileInfo[key].githubName;
                     let dirPath = path_1.default.join(__dirname, '..', 'assets', 'data');
@@ -49,7 +48,6 @@ class GithubApi {
                             githubDataArray.push(cachedData);
                         }
                         else {
-                            console.log('5:');
                             let url = `https://api.github.com/users/${githubName}/repos?sort=pushed_at`;
                             let response = yield axios_1.default.get(url);
                             console.log('生dataを使用');
@@ -63,10 +61,8 @@ class GithubApi {
                             //githubDataArray.push(response.data);
                             githubDataArray.push(dataToCache);
                         }
-                        console.log('6:');
                     }
                     catch (error) {
-                        console.log('7:');
                         // エラーハンドリング
                         console.error('GitHub APIエラー:', error);
                         throw error;
