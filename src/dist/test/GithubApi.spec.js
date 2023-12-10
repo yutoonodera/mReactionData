@@ -15,3 +15,7 @@ test('ProfileのgetGithubRepositoryの概要', () => __awaiter(void 0, void 0, v
     const githubData = new GithubApi_1.GithubApi(new Profile_1.Profile);
     //console.log(await githubData.getGithubData());
 }));
+//以下テストを次のコミットで書く
+//Github名が取得できること
+//Githubリポジトリが取得できること
+//Cashを使っていること
