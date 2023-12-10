@@ -4,7 +4,7 @@ import { DisplayRequestData } from '../models/DisplayRequestData';
 
 export const handleAnalyticsPost = (req: Request, res: Response) => {
   try {
-    // データを受け取る
+    // リクエストデータを受け取る
     const requestBody = req.body;
     const requestReferer = req.headers.referer || req.headers.referrer;
     console.log("requestBody::"+JSON.stringify(requestBody));

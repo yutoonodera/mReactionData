@@ -4,7 +4,7 @@ exports.handleAnalyticsPost = void 0;
 const DisplayRequestData_1 = require("../models/DisplayRequestData");
 const handleAnalyticsPost = (req, res) => {
     try {
-        // データを受け取る
+        // リクエストデータを受け取る
         const requestBody = req.body;
         const requestReferer = req.headers.referer || req.headers.referrer;
         console.log("requestBody::" + JSON.stringify(requestBody));
