@@ -17,5 +17,16 @@ services:
         working_dir: /app
         # 起動後に実行するコマンド
         command: sh -c 'npx tsc; npm run dev'
+    my_mysql:
+        image: mysql #もととなるイメージ。ここではmysql
+        environment: #最小限の記述にしています。他にも環境設定は可能です。
+            MYSQL_ROOT_PASSWORD: root #rootパスワード。今回はrootにしました。
+            MYSQL_DATABASE: my_mysql_db #作成するデータベース。今回はmy_mysql_dbにしました。
+        ports:
+            - '3300:3300' #接続するポート番号。お好きな番号でいけます。
+        volumes:
+            - my_volume:/var/lib/mysql　    #第３の場所my_volumeをコンテナ内に同期するコード
+volumes:
+    my_volume:
 
 
