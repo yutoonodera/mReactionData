@@ -6,9 +6,9 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index'); // 変更箇所
 var usersRouter = require('./routes/users');
-
+const cors = require('cors');
 var app = express();
-
+app.use(cors());
 // view engine setup
 app.set('views', path.join('views'));  // 変更箇所
 app.set('view engine', 'jade');
@@ -18,6 +18,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join('public')));  // 変更箇所
+//public/ ディレクトリ内の静的ファイルを提供するための設定
+app.use(express.static('public'));
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

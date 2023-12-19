@@ -34,29 +34,12 @@ block content
             a(href=item.html_url, target="_blank", rel="noopener noreferrer")= item.name
             | &nbsp;
             | updated_at:#{item.updated_at.slice(0, 10)}
-  h2.heading Hello Beautiful World!!
-  h2.heading 恐るべきスピード!!
-  p.heading pタグの情報です!!!
-  p.scroll ↓ スクロール ↓
-
-  style.
-    .heading {
-       color: #0bd;
-       font-size: 4rem;
-       font-weight: bold;
-       margin: 600px 0;
-       opacity: 0;
-       transform: translateX(-100px);
-     }
-     .active {
-       opacity: 1;
-       transition: 1s;
-       transform: translateX(0);
-     }
-
-    .scroll {
-      text-align: center;
-      position: fixed;
-      top: 0;
-      width: 100%;
-    }
+  button.scrollMoveeWR.pushButtonMoveeWR １つ目ボタン
+    button.scrollMoveeWR.pushButtonMoveeWR 2つ目ボタン
+  a.scrollMoveeWR.pushLinkMoveeWR(href='https://www.yahoo.co.jp')
+    p 外部リンクのテキスト
+  a.scrollMoveeWR.pushLinkMoveeWR(href='/users')
+    p 内部リンクのテキスト
+  h2.scrollMoveeWR Hello Beautiful World!!
+  h2.scrollMoveeWR 恐るべきスピード!!
+  p.scrollMoveeWR pタグの情報です!!!
