@@ -10,7 +10,8 @@ export const handleAnalyticsPost = (req: Request, res: Response) => {
     console.log("requestBody::"+JSON.stringify(requestBody));
     const displayRequest = new DisplayRequestData();
     const hashedIp = displayRequest.hashIpAddress(req.ip as string);
-    console.log(`モデル化したHashed IP: ${hashedIp}`);
+    const dateData = displayRequest.getTimestamp();
+    console.log(`アクション: ${requestBody.action},text: ${requestBody.text},buttonText: ${requestBody.buttonText},linkText: ${requestBody.linkText}, linkUrl: ${requestBody.linkUrl},モデル化したHashed IP: ${hashedIp}, ymdDate: ${dateData.ymdDate}, ymdhmsmDate: ${dateData.ymdhmsmDate}`);
     if (requestReferer) {
       console.log('Referer:', requestReferer);
     } else {
