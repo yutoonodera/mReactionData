@@ -11,10 +11,6 @@ export class GithubApi {
      * @returns
      */
 
-    //見通しが悪いのでキャッシュの有効期限チェックを外出しにする
-    //見通しが悪いのでファイル存在チェックを外出しにする
-    //見通しが悪いのでgetGithubRepositoryにしてfunctionを外出しする
-    //エラーコード用のテストを書いてcatch(error)でコードに応じたメッセージを分ける
     async getGithubData() : Promise<any[]> {
         const profileInfo = this.profile.getAllProfileData();
         const cacheDuration = 24 * 60 * 60 * 1000; // キャッシュの有効期限 (24時間)
@@ -33,7 +29,6 @@ export class GithubApi {
                         cachedData = JSON.parse(fs.readFileSync(cacheFilePath, 'utf-8'));
                     }
                     if (cachedData && cachedData.timestamp && Date.now() - cachedData.timestamp < cacheDuration) {
-                        //githubDataArray.push(cachedData.data);
                         githubDataArray.push(cachedData);
                     } else {
                         let url = `https://api.github.com/users/${githubName}/repos?sort=pushed_at`;

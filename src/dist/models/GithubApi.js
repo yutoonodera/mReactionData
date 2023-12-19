@@ -24,10 +24,6 @@ class GithubApi {
      * Github APIからデータを取得する
      * @returns
      */
-    //見通しが悪いのでキャッシュの有効期限チェックを外出しにする
-    //見通しが悪いのでファイル存在チェックを外出しにする
-    //見通しが悪いのでgetGithubRepositoryにしてfunctionを外出しする
-    //エラーコード用のテストを書いてcatch(error)でコードに応じたメッセージを分ける
     getGithubData() {
         return __awaiter(this, void 0, void 0, function* () {
             const profileInfo = this.profile.getAllProfileData();
@@ -44,7 +40,6 @@ class GithubApi {
                             cachedData = JSON.parse(fs_1.default.readFileSync(cacheFilePath, 'utf-8'));
                         }
                         if (cachedData && cachedData.timestamp && Date.now() - cachedData.timestamp < cacheDuration) {
-                            //githubDataArray.push(cachedData.data);
                             githubDataArray.push(cachedData);
                         }
                         else {

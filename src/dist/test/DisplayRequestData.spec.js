@@ -53,23 +53,3 @@ describe('DisplayRequestDataモデルのテスト', () => {
         expect(hashedIpAddress).toBe('mockedHashedIpAddress');
     });
 });
-// describe('DisplayRequestData', () => {
-//   it('should hash the given IP address', () => {
-//     const displayRequestData = new DisplayRequestData();
-//     const ipAddress = '192.168.1.1';
-//     // createHashメソッドを直接モック化
-//     const createHashMock = jest.fn().mockReturnThis();
-//     const updateMock = jest.fn();
-//     const digestMock = jest.fn(() => 'mockedHashedIpAddress');
-//     createHashMock.mockReturnValueOnce({ update: updateMock, digest: digestMock });
-//     // crypto モジュールの createHash をモックとして置き換える
-//     jest.spyOn(crypto, 'createHash').mockImplementation(createHashMock);
-//     const hashedIpAddress = displayRequestData.hashIpAddress(ipAddress);
-//     expect(hashedIpAddress).toBe('mockedHashedIpAddress');
-//     expect(crypto.createHash).toHaveBeenCalledWith('sha256');
-//     expect(updateMock).toHaveBeenCalledWith(ipAddress);
-//     expect(digestMock).toHaveBeenCalledWith('hex');
-//     // スパイをリセット
-//     jest.restoreAllMocks();
-//   });
-// });
