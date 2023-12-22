@@ -52,4 +52,14 @@ describe('DisplayRequestDataモデルのテスト', () => {
         const hashedIpAddress = displayRequestData.hashIpAddress(ipAddress);
         expect(hashedIpAddress).toBe('mockedHashedIpAddress');
     });
+    describe('DisplayRequestData', () => {
+        const displayRequestData = new DisplayRequestData_1.DisplayRequestData();
+        const timestamp = displayRequestData.getTimestamp();
+        it('年月日時分秒ミリ秒のフォーマットが正しいこと', () => {
+            expect(timestamp.ymdhmsmDate).toMatch(/^\d+$/);
+        });
+        it('年/月/日 のフォーマットが正しいこと', () => {
+            expect(timestamp.ymdDate).toMatch(/^\d{4}\/\d{2}\/\d{2}$/);
+        });
+    });
 });
