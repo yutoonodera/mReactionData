@@ -6,8 +6,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var indexRouter = require('./routes/index'); // 変更箇所
 var usersRouter = require('./routes/users');
+//MVR用なのでhpでは不要
 const cors = require('cors');
 var app = express();
+//MVR用なのでhpでは不要
 app.use(cors());
 // view engine setup
 app.set('views', path.join('views')); // 変更箇所
