@@ -20,7 +20,7 @@ function showElements(entries){
           headers: {
           'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ action:'scroll', text: text }), // テキスト情報を送信
+          body: JSON.stringify({ action:'scroll', text: text,path: window.location.href}), // テキスト情報を送信
       })
       .catch((error) => {
         console.error('エラー:', error);
