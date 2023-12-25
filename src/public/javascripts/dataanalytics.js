@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   scrolled();
   buttonPushed();
   linkPushed();
+  documentDownloaded();
   selectBoxSelected();
   radioButtonSelected();
   videoPlayed();
@@ -85,7 +86,34 @@ function linkPushed() {
     });
   });
 }
-
+/**
+ * download有無はユーザーのchrome設定次第で資料をダウンロードする、or 資料を開くになる
+ * 上記２つの判別をするのは難しそう TODO
+ */
+function documentDownloaded() {
+  //https://kiryusblog.com/chrome-open-or-download-pdf/
+  const linkElements = document.querySelectorAll(".downloadLinkMoveeWR");
+  // 各要素に対してクリックイベントリスナーを追加
+  linkElements.forEach(function (linkElement) {
+    linkElement.addEventListener("click", function () {
+      const linkText = this.textContent;
+      const linkUrl = this.getAttribute("href");
+      fetch("http://localhost:3000/analytics", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          action: "download",
+          linkText: linkText,
+          linkUrl: linkUrl,
+        }), // テキスト情報を送信
+      }).catch((error) => {
+        console.error("エラー:", error);
+      });
+    });
+  });
+}
 function selectBoxSelected() {
   const selectBoxes = document.querySelectorAll(".selectkMoveeWR");
   // 各セレクトボックスに対してクリックイベントリスナーを追加
