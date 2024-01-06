@@ -32,20 +32,22 @@ class GithubApi {
             for (const key in profileInfo) {
                 if (Object.prototype.hasOwnProperty.call(profileInfo, key)) {
                     let githubName = profileInfo[key].githubName;
-                    let dirPath = path_1.default.join(__dirname, '..', 'assets', 'data');
+                    let dirPath = path_1.default.join(__dirname, "..", "assets", "data");
                     let cacheFilePath = path_1.default.join(dirPath, `${githubName}_github_cache.json`);
                     try {
                         let cachedData = null;
                         if (fs_1.default.existsSync(cacheFilePath)) {
-                            cachedData = JSON.parse(fs_1.default.readFileSync(cacheFilePath, 'utf-8'));
+                            cachedData = JSON.parse(fs_1.default.readFileSync(cacheFilePath, "utf-8"));
                         }
-                        if (cachedData && cachedData.timestamp && Date.now() - cachedData.timestamp < cacheDuration) {
+                        if (cachedData &&
+                            cachedData.timestamp &&
+                            Date.now() - cachedData.timestamp < cacheDuration) {
                             githubDataArray.push(cachedData);
                         }
                         else {
                             let url = `https://api.github.com/users/${githubName}/repos?sort=pushed_at`;
                             let response = yield axios_1.default.get(url);
-                            console.log('生dataを使用');
+                            console.log("生dataを使用");
                             let dataToCache = {
                                 data: response.data,
                                 timestamp: Date.now(),
@@ -59,7 +61,7 @@ class GithubApi {
                     }
                     catch (error) {
                         // エラーハンドリング
-                        console.error('GitHub APIエラー:', error);
+                        console.error("GitHub APIエラー:", error);
                         throw error;
                     }
                 }

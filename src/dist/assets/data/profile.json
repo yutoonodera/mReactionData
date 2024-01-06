@@ -1,10 +1,11 @@
 {
-    "onody": {
-        "githubName": "yutoonodera",
-        "technique": "Spring Boot,Laravel,Express,AWS,VPS"
+    "user1": {
+        "domains": "file:///Users/onoderayuto/Desktop/MWR/test/index.html"
     },
-    "sasa": {
-        "githubName": "teamsasaki",
-        "technique": "ruby,golang"
+    "user2": {
+        "domains": "example.org"
+    },
+    "user3": {
+        "domains": "file:///Users/onoderayuto/Desktop/MWR/test/test-dir/index.html"
     }
 }

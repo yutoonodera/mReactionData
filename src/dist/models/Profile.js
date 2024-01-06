@@ -8,7 +8,7 @@ const profile_json_1 = __importDefault(require("../assets/data/profile.json"));
 class Profile {
     // getGithubNameメソッドの型指定
     getAllProfileData() {
-        if (typeof profile_json_1.default === 'object' && profile_json_1.default !== null) {
+        if (typeof profile_json_1.default === "object" && profile_json_1.default !== null) {
             return profile_json_1.default;
         }
         else {
