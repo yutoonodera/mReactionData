@@ -32,8 +32,8 @@ function scrolled() {
           body: JSON.stringify({
             action: "scroll",
             text: text,
-            path: window.location.href,
-          }), // テキスト情報を送信
+            path: window.location.href
+          }),
         }).catch((error) => {
           console.error("エラー:", error);
         });
@@ -48,14 +48,16 @@ function buttonPushed() {
     button.addEventListener("click", function () {
       // クリック時に実行されるコードをここに記述
       const buttonText = this.textContent;
-      // データをサーバーに送信
       fetch("http://localhost:3000/analytics", {
-        //fetch('/analytics', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ action: "button push", buttonText: buttonText }), // テキスト情報を送信
+        body: JSON.stringify({
+          action: "button push",
+          buttonText: buttonText,
+          path: window.location.href
+        }),
       }).catch((error) => {
         console.error("エラー:", error);
       });
@@ -79,7 +81,8 @@ function linkPushed() {
           action: "link push",
           linkText: linkText,
           linkUrl: linkUrl,
-        }), // テキスト情報を送信
+          path: window.location.href
+        }),
       }).catch((error) => {
         console.error("エラー:", error);
       });
@@ -88,10 +91,8 @@ function linkPushed() {
 }
 /**
  * download有無はユーザーのchrome設定次第で資料をダウンロードする、or 資料を開くになる
- * 上記２つの判別をするのは難しそう TODO
  */
 function documentDownloaded() {
-  //https://kiryusblog.com/chrome-open-or-download-pdf/
   const linkElements = document.querySelectorAll(".downloadLinkMoveeWR");
   // 各要素に対してクリックイベントリスナーを追加
   linkElements.forEach(function (linkElement) {
@@ -107,7 +108,8 @@ function documentDownloaded() {
           action: "download",
           linkText: linkText,
           linkUrl: linkUrl,
-        }), // テキスト情報を送信
+          path: window.location.href
+        }),
       }).catch((error) => {
         console.error("エラー:", error);
       });
@@ -121,12 +123,20 @@ function selectBoxSelected() {
     selectBox.addEventListener("mousedown", function (event) {
       // クリックされたセレクトボックスのID情報を取得
       const clickedSelectBoxId = event.target.id;
-      console.log(
-        `セレクトボックスがマウスでクリックされました。ID: ${clickedSelectBoxId}`
-      );
-      // セレクトボックスからname属性を取得
-      const selectBoxName = selectBox.name;
-      console.log(`セレクトボックスのname属性: ${selectBoxName}`);
+      fetch("http://localhost:3000/analytics", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          action: "selectboxSelected",
+          selectBoxName: selectBox.name,
+          selectBoxNameId: clickedSelectBoxId,
+          path: window.location.href
+        }),
+      }).catch((error) => {
+        console.error("エラー:", error);
+      });
     });
   });
 }
@@ -138,6 +148,19 @@ function radioButtonSelected() {
     radioButton.addEventListener("mousedown", function (event) {
       // ラジオボタンをクリックした場合、ラベルのクリックイベントを停止させる
       event.stopPropagation();
+      fetch("http://localhost:3000/analytics", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          action: "radioButtonSelected",
+          radioButtonName: radioButton.getAttribute("name"),
+          path: window.location.href
+        }),
+      }).catch((error) => {
+        console.error("エラー:", error);
+      });
       console.log("ラジオボタンがマウスでクリックされました");
       const name = radioButton.getAttribute("name");
       console.log("ラジオボタンの name 属性:", name);
@@ -148,6 +171,19 @@ function radioButtonSelected() {
     if (label) {
       label.addEventListener("mousedown", function () {
         const labelText = label.textContent.trim();
+        fetch("http://localhost:3000/analytics", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            action: "radioLabelSelected",
+            labelText: labelText,
+            path: window.location.href
+          }), // テキスト情報を送信
+        }).catch((error) => {
+          console.error("エラー:", error);
+        });
         console.log("ラベルのテキスト:", labelText);
         console.log("ラベルがマウスでクリックされました");
       });
@@ -174,7 +210,6 @@ function videoPlayed() {
       const videoSrc = videoElement.querySelector("source").getAttribute("src");
       console.log(`動画${index + 1}の再生時間: ${duration.toFixed(2)} 秒`);
       console.log(`動画${index + 1}のファイル名: ${videoSrc}`);
-      const dateData = getTimestamp();
       fetch("http://localhost:3000/analytics", {
         method: "POST",
         headers: {
@@ -183,9 +218,9 @@ function videoPlayed() {
         body: JSON.stringify({
           action: "video reproduction",
           text: videoSrc,
-          ymdDate: dateData.ymdDate,
-          ymdhmsmDate: dateData.ymdhmsmDate,
-        }), // テキスト情報を送信
+          videoPlayedTime:duration.toFixed(2),
+          path: window.location.href
+        }),
       }).catch((error) => {
         console.error("エラー:", error);
       });
