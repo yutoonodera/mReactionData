@@ -6,6 +6,8 @@ class DisplayRequestData {
     constructor() {
         // コンストラクタ内で日時を取得
         this.currentDate = new Date();
+        // タイムゾーンを日本時間 (JST) に設定
+        this.currentDate.setUTCHours(this.currentDate.getUTCHours() + 9);
     }
     hashIpAddress(ipAddress) {
         const hash = crypto.createHash('sha256'); // ハッシュ関数を選択
