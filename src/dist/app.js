@@ -25,7 +25,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    next(createError(404));
+    res.status(404).send('MRDを検討中の方は、movee<a href="https://movee.jp/">ホームページ</a>からお問い合わせください');
 });
 // error handler
 app.use(function (err, req, res, next) {
