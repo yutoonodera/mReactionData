@@ -32,6 +32,7 @@ function scrolled() {
           body: JSON.stringify({
             action: "scroll",
             text: text,
+            hostname:window.location.hostname,
             path: window.location.href
           }),
         }).catch((error) => {
@@ -56,6 +57,7 @@ function buttonPushed() {
         body: JSON.stringify({
           action: "button push",
           buttonText: buttonText,
+          hostname:window.location.hostname,
           path: window.location.href
         }),
       }).catch((error) => {
@@ -81,6 +83,7 @@ function linkPushed() {
           action: "link push",
           linkText: linkText,
           linkUrl: linkUrl,
+          hostname:window.location.hostname,
           path: window.location.href
         }),
       }).catch((error) => {
@@ -108,6 +111,7 @@ function documentDownloaded() {
           action: "download",
           linkText: linkText,
           linkUrl: linkUrl,
+          hostname:window.location.hostname,
           path: window.location.href
         }),
       }).catch((error) => {
@@ -132,6 +136,7 @@ function selectBoxSelected() {
           action: "selectboxSelected",
           selectBoxName: selectBox.name,
           selectBoxNameId: clickedSelectBoxId,
+          hostname:window.location.hostname,
           path: window.location.href
         }),
       }).catch((error) => {
@@ -156,6 +161,7 @@ function radioButtonSelected() {
         body: JSON.stringify({
           action: "radioButtonSelected",
           radioButtonName: radioButton.getAttribute("name"),
+          hostname:window.location.hostname,
           path: window.location.href
         }),
       }).catch((error) => {
@@ -179,6 +185,7 @@ function radioButtonSelected() {
           body: JSON.stringify({
             action: "radioLabelSelected",
             labelText: labelText,
+            hostname:window.location.hostname,
             path: window.location.href
           }), // テキスト情報を送信
         }).catch((error) => {
@@ -219,6 +226,7 @@ function videoPlayed() {
           action: "video reproduction",
           text: videoSrc,
           videoPlayedTime:duration.toFixed(2),
+          hostname:window.location.hostname,
           path: window.location.href
         }),
       }).catch((error) => {

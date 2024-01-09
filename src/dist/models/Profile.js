@@ -15,5 +15,13 @@ class Profile {
             return undefined;
         }
     }
+    containsDomain(domainToFind) {
+        const profileData = this.getAllProfileData();
+        if (profileData) {
+            const profiles = Object.values(profileData);
+            return profiles.some(profile => profile.domains === domainToFind);
+        }
+        return false;
+    }
 }
 exports.Profile = Profile;
