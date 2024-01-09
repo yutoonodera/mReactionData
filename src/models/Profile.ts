@@ -14,4 +14,12 @@ export class Profile {
       return undefined;
     }
   }
+  public containsDomain(domainToFind: string): boolean {
+    const profileData = this.getAllProfileData();
+    if (profileData) {
+      const profiles = Object.values(profileData);
+      return profiles.some(profile => profile.domains === domainToFind);
+    }
+    return false;
+  }
 }
