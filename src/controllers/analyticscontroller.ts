@@ -23,6 +23,8 @@ export const handleAnalyticsPost = (req: Request, res: Response) => {
     //2.1.1がYesの場合、redisの日付を見て、１日以上経過していたらprofile.jsonにデータをとりに行く、pathがprofile.jsonにあればredisのpathデータを削除後に本日日付で登録する、なければそこで処理を終了する
     //2.2 Noの場合,profile.jsonにデータをとりに行き、pathがprofile.jsonにあればredisのpathデータを本日日付で登録する、なければそこで処理を終了する
     //2.1　もしくは2.2で前者の場合はrequestDataをredisに登録する
+    console.log('パス名'+requestBody.path)
+    console.log("ホスト名"+requestBody.hostname);
     if(!new Profile().containsDomain(requestBody.path)){
       return false;
     }
