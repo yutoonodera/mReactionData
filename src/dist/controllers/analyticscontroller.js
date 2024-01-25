@@ -25,7 +25,7 @@ const handleAnalyticsPost = (req, res) => {
         //2.1　もしくは2.2で前者の場合はrequestDataをredisに登録する
         console.log('パス名' + requestBody.path);
         console.log("ホスト名" + requestBody.hostname);
-        if (!new Profile_1.Profile().containsDomain(requestBody.path)) {
+        if (!new Profile_1.Profile().containsDomain(requestBody.hostname)) {
             return false;
         }
         console.log("ホスト名" + requestBody.hostname);
