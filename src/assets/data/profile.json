@@ -3,9 +3,12 @@
     "domains": "file:///Users/onoderayuto/Desktop/MWR/test/index.html"
   },
   "user2": {
-    "domains": "movee.jp"
+    "domains": "https://movee.jp"
   },
   "user3": {
     "domains": "file:///Users/onoderayuto/Desktop/MWR/test/test-dir/index.html"
+  },
+  "user4": {
+    "domains": "localhost:3000"
   }
 }
