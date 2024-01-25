@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function passed() {
-  // 着火点となる要素git
+  // 着火点となる要素
   const passes = document.querySelectorAll(".passMRD");
   const observer = new IntersectionObserver(showElements);
 
