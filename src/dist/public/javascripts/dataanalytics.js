@@ -1,6 +1,6 @@
 "use strict";
 document.addEventListener("DOMContentLoaded", function () {
-    scrolled();
+    passed();
     buttonPushed();
     linkPushed();
     documentDownloaded();
@@ -8,13 +8,13 @@ document.addEventListener("DOMContentLoaded", function () {
     radioButtonSelected();
     videoPlayed();
 });
-function scrolled() {
+function passed() {
     // 着火点となる要素
-    const scrolls = document.querySelectorAll(".scrollMoveeWR");
+    const passes = document.querySelectorAll(".passMRD");
     const observer = new IntersectionObserver(showElements);
     // 各要素に到達したら発動。複数あるから forEach
-    scrolls.forEach((scroll) => {
-        observer.observe(scroll);
+    passes.forEach((pass) => {
+        observer.observe(pass);
     });
     // 要素が表示されたら実行する動作
     function showElements(entries) {
@@ -29,7 +29,7 @@ function scrolled() {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        action: "scroll",
+                        action: "passed",
                         text: text,
                         hostname: window.location.hostname,
                         path: window.location.href
@@ -42,7 +42,7 @@ function scrolled() {
     }
 }
 function buttonPushed() {
-    const buttons = document.querySelectorAll(".pushButtonMoveeWR");
+    const buttons = document.querySelectorAll(".pushButtonMRD");
     // 各要素に対してクリックイベントリスナーを追加
     buttons.forEach(function (button) {
         button.addEventListener("click", function () {
@@ -66,7 +66,7 @@ function buttonPushed() {
     });
 }
 function linkPushed() {
-    const linkElements = document.querySelectorAll(".pushLinkMoveeWR");
+    const linkElements = document.querySelectorAll(".pushLinkMRD");
     // 各要素に対してクリックイベントリスナーを追加
     linkElements.forEach(function (linkElement) {
         linkElement.addEventListener("click", function () {
@@ -94,7 +94,7 @@ function linkPushed() {
  * download有無はユーザーのchrome設定次第で資料をダウンロードする、or 資料を開くになる
  */
 function documentDownloaded() {
-    const linkElements = document.querySelectorAll(".downloadLinkMoveeWR");
+    const linkElements = document.querySelectorAll(".downloadLinkMRD");
     // 各要素に対してクリックイベントリスナーを追加
     linkElements.forEach(function (linkElement) {
         linkElement.addEventListener("click", function () {
@@ -119,7 +119,7 @@ function documentDownloaded() {
     });
 }
 function selectBoxSelected() {
-    const selectBoxes = document.querySelectorAll(".selectkMoveeWR");
+    const selectBoxes = document.querySelectorAll(".selectMRD");
     // 各セレクトボックスに対してクリックイベントリスナーを追加
     selectBoxes.forEach(function (selectBox) {
         selectBox.addEventListener("mousedown", function (event) {
@@ -144,7 +144,7 @@ function selectBoxSelected() {
     });
 }
 function radioButtonSelected() {
-    const radioButtons = document.querySelectorAll(".radioboxMoveeWR");
+    const radioButtons = document.querySelectorAll(".radioboxMRD");
     // 各ラジオボタンに対してクリックイベントリスナーを追加
     radioButtons.forEach(function (radioButton) {
         radioButton.addEventListener("mousedown", function (event) {
