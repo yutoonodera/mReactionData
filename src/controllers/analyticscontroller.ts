@@ -29,9 +29,9 @@ export const handleAnalyticsPost = (req: Request, res: Response) => {
       return false;
     }
     console.log("ホスト名"+requestBody.hostname);
-    redis.get(requestBody.path, (err, redisResult: any) => {
+    redis.get(requestBody.hostname, (err, redisResult: any) => {
       if(redisResult !== null && new Date(redisResult) < new Date()|| redisResult === null){
-        redis.set(requestBody.path,dateData.ymdDate), (err:any) => {
+        redis.set(requestBody.hostname,dateData.ymdDate), (err:any) => {
           if (err) {
             console.error("Redis エラー:", err);
             res.status(500).json({ error: "Redis エラーが発生しました" });
