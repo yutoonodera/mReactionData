@@ -23,13 +23,15 @@ export const handleAnalyticsPost = (req: Request, res: Response) => {
     //2.1.1がYesの場合、redisの日付を見て、１日以上経過していたらprofile.jsonにデータをとりに行く、pathがprofile.jsonにあればredisのpathデータを削除後に本日日付で登録する、なければそこで処理を終了する
     //2.2 Noの場合,profile.jsonにデータをとりに行き、pathがprofile.jsonにあればredisのpathデータを本日日付で登録する、なければそこで処理を終了する
     //2.1　もしくは2.2で前者の場合はrequestDataをredisに登録する
-    if(!new Profile().containsDomain(requestBody.path)){
+    console.log('パス名'+requestBody.path)
+    console.log("ホスト名"+requestBody.hostname);
+    if(!new Profile().containsDomain(requestBody.hostname)){
       return false;
     }
     console.log("ホスト名"+requestBody.hostname);
-    redis.get(requestBody.path, (err, redisResult: any) => {
+    redis.get(requestBody.hostname, (err, redisResult: any) => {
       if(redisResult !== null && new Date(redisResult) < new Date()|| redisResult === null){
-        redis.set(requestBody.path,dateData.ymdDate), (err:any) => {
+        redis.set(requestBody.hostname,dateData.ymdDate), (err:any) => {
           if (err) {
             console.error("Redis エラー:", err);
             res.status(500).json({ error: "Redis エラーが発生しました" });
