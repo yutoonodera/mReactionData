@@ -1,4 +1,6 @@
 "use strict";
+//const apiUrl = "https://beta.mreactiondata.com"; // production
+const apiUrl = "http://localhost:3000"; // local
 document.addEventListener("DOMContentLoaded", function () {
     passed();
     buttonPushed();
@@ -23,7 +25,7 @@ function passed() {
                 const text = entry.target.textContent;
                 console.log("テキスト情報:", text);
                 // データをサーバーに送信
-                fetch("http://localhost:3000/analytics", {
+                fetch(apiUrl + "/analytics", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -48,7 +50,7 @@ function buttonPushed() {
         button.addEventListener("click", function () {
             // クリック時に実行されるコードをここに記述
             const buttonText = this.textContent;
-            fetch("http://localhost:3000/analytics", {
+            fetch(apiUrl + "/analytics", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -72,7 +74,7 @@ function linkPushed() {
         linkElement.addEventListener("click", function () {
             const linkText = this.textContent;
             const linkUrl = this.getAttribute("href");
-            fetch("http://localhost:3000/analytics", {
+            fetch(apiUrl + "/analytics", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -100,7 +102,7 @@ function documentDownloaded() {
         linkElement.addEventListener("click", function () {
             const linkText = this.textContent;
             const linkUrl = this.getAttribute("href");
-            fetch("http://localhost:3000/analytics", {
+            fetch(apiUrl + "/analytics", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -125,7 +127,7 @@ function selectBoxSelected() {
         selectBox.addEventListener("mousedown", function (event) {
             // クリックされたセレクトボックスのID情報を取得
             const clickedSelectBoxId = event.target.id;
-            fetch("http://localhost:3000/analytics", {
+            fetch(apiUrl + "/analytics", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -150,7 +152,7 @@ function radioButtonSelected() {
         radioButton.addEventListener("mousedown", function (event) {
             // ラジオボタンをクリックした場合、ラベルのクリックイベントを停止させる
             event.stopPropagation();
-            fetch("http://localhost:3000/analytics", {
+            fetch(apiUrl + "/analytics", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -173,7 +175,7 @@ function radioButtonSelected() {
         if (label) {
             label.addEventListener("mousedown", function () {
                 const labelText = label.textContent.trim();
-                fetch("http://localhost:3000/analytics", {
+                fetch(apiUrl + "/analytics", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -210,7 +212,7 @@ function videoPlayed() {
             const videoSrc = videoElement.querySelector("source").getAttribute("src");
             console.log(`動画${index + 1}の再生時間: ${duration.toFixed(2)} 秒`);
             console.log(`動画${index + 1}のファイル名: ${videoSrc}`);
-            fetch("http://localhost:3000/analytics", {
+            fetch(apiUrl + "/analytics", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
