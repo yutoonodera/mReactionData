@@ -7,7 +7,8 @@ import Redis from "ioredis";
 const port = 3000;
 
 const redisPort = 6379;
-const redis = new Redis(redisPort, "127.0.0.1");
+const redis = new Redis(redisPort, "127.0.0.1"); //production
+//const redis = new Redis(redisPort, "redis"); //local
 
 export const handleAnalyticsPost = (req: Request, res: Response) => {
   try {

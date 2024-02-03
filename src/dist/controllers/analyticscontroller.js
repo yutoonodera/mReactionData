@@ -10,7 +10,8 @@ const ioredis_1 = __importDefault(require("ioredis"));
 // var Redis = require("ioredis");
 const port = 3000;
 const redisPort = 6379;
-const redis = new ioredis_1.default(redisPort, "127.0.0.1");
+const redis = new ioredis_1.default(redisPort, "127.0.0.1"); //production
+//const redis = new Redis(redisPort, "redis"); //local
 const handleAnalyticsPost = (req, res) => {
     try {
         // リクエストデータを受け取る
