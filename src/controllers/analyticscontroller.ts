@@ -43,7 +43,7 @@ export const handleAnalyticsPost = (req: Request, res: Response) => {
       const postData = `Hash化したIP: ${hashedIp}, テキスト: ${requestBody.text},ボタンテキスト: ${requestBody.buttonText},リンクテキスト: ${requestBody.linkText},
       リンクURL: ${requestBody.linkUrl},セレクトボックス：${requestBody.selectBoxName},セレクトボックスID：${requestBody.selectBoxNameId},
       ラジオボタン名：${requestBody.radioButtonName},ラジオボタンラベル名: ${requestBody.labelText},動画再生時間（秒）:${requestBody.videoPlayedTime}`;
-      redis.set(requestBody.hostname+'_'+requestBody.path+'_'+requestBody.action+'_'+hashedIp+'（'+dateData.ymdhmsmDate+'）', postData);
+      redis.set(requestBody.hostname+'_'+requestBody.path+'_'+requestBody.action+'_'+hashedIp+'(('+dateData.ymdhmsmDate+'))', postData);
     });
 
     console.log(
