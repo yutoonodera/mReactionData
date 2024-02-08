@@ -40,71 +40,11 @@ const handleAnalyticsPost = (req, res) => {
                     }
                 };
             }
-            const postData = `アクション: ${requestBody.action},ホスト名: ${requestBody.hostname},パス: ${requestBody.path}, Hash化したIP: ${hashedIp}, テキスト: ${requestBody.text},ボタンテキスト: ${requestBody.buttonText},リンクテキスト: ${requestBody.linkText},
+            const postData = `Hash化したIP: ${hashedIp}, テキスト: ${requestBody.text},ボタンテキスト: ${requestBody.buttonText},リンクテキスト: ${requestBody.linkText},
       リンクURL: ${requestBody.linkUrl},セレクトボックス：${requestBody.selectBoxName},セレクトボックスID：${requestBody.selectBoxNameId},
-      ラジオボタン名：${requestBody.radioButtonName},ラジオボタンラベル名: ${requestBody.labelText},動画再生時間（秒）:${requestBody.videoPlayedTime},ymd日付: ${dateData.ymdDate}, ymdhmsm日付: ${dateData.ymdhmsmDate}`;
-            redis.set(hashedIp + '_' + dateData.ymdhmsmDate, postData);
+      ラジオボタン名：${requestBody.radioButtonName},ラジオボタンラベル名: ${requestBody.labelText},動画再生時間（秒）:${requestBody.videoPlayedTime}`;
+            redis.set(requestBody.hostname + '_' + requestBody.path + '_' + requestBody.action + '_' + hashedIp + '（' + dateData.ymdhmsmDate + '）', postData);
         });
-        // redis.get(requestBody.path, (err, redisResult: any) => {
-        //   if (err) {
-        //     // Redis 操作中にエラーが発生した場合の処理
-        //     console.error("Redis エラー:", err);
-        //   } else if (redisResult !== null) {
-        //     const postData = `アクション: ${requestBody.action},パス: ${requestBody.path}, Hash化したIP: ${hashedIp}, テキスト: ${requestBody.text},ボタンテキスト: ${requestBody.buttonText},リンクテキスト: ${requestBody.linkText},
-        //     リンクURL: ${requestBody.linkUrl},セレクトボックス：${requestBody.selectBoxName},セレクトボックスID：${requestBody.selectBoxNameId},
-        //     ラジオボタン名：${requestBody.radioButtonName},ラジオボタンラベル名: ${requestBody.labelText},動画再生時間（秒）:${requestBody.videoPlayedTime},ymd日付: ${dateData.ymdDate}, ymdhmsm日付: ${dateData.ymdhmsmDate}`;
-        //     redis.set(hashedIp+'_'+dateData.ymdhmsmDate, postData, (err, reply) => {
-        //       if (err) {
-        //         console.error("Redis エラー:", err);
-        //         res.status(500).json({ error: "Redis エラーが発生しました" });
-        //       } else {
-        //         console.log("データが Redis に登録されました");
-        //         res.status(200).json({ message: "POSTリクエストを受け取りました" });
-        //       }
-        //     });
-        //   } else {
-        //     const permissionUrl = new Profile();
-        //     const profileData = permissionUrl.getAllProfileData();
-        //     if (profileData) {
-        //       const profileKeys = Object.keys(profileData);
-        //       // 各プロファイルの domains プロパティをチェック
-        //       for (const key of profileKeys) {
-        //         const domains = profileData[key].domains;
-        //         if (domains.includes(requestBody.path)) {
-        //           // Redisからデータを取得
-        //           redis.get(requestBody.path, (err, existingData) => {
-        //             if (err) {
-        //               console.error("Redis エラー:", err);
-        //               res.status(500).json({ error: "Redis エラーが発生しました" });
-        //             } else {
-        //               if (existingData) {
-        //                 // 既存のデータが存在する場合の処理
-        //                 console.log("既存のデータが Redis に存在します:", existingData);
-        //                 res.status(409).json({ error: "既存のデータが存在します" });
-        //               } else {
-        //                 // 既存のデータが存在しない場合、新しいデータを登録
-        //                 redis.set(requestBody.path, dateData.ymdDate, (err, reply) => {
-        //                   if (err) {
-        //                     console.error("Redis エラー:", err);
-        //                     res.status(500).json({ error: "Redis エラーが発生しました" });
-        //                   } else {
-        //                     console.log("データが Redis に登録されました");
-        //                     res.status(200).json({ message: "POSTリクエストを受け取りました" });
-        //                   }
-        //                 });
-        //               }
-        //             }
-        //           });
-        //           return false;
-        //         } else {
-        //           console.log(`プロファイル ${key} は ${domains} を含みません。`);
-        //         }
-        //       }
-        //     } else {
-        //       console.log("ProfileData オブジェクトが存在しません。");
-        //     }
-        //   }
-        // });
         console.log(`アクション: ${requestBody.action},ホスト名: ${requestBody.hostname},パス: ${requestBody.path}, Hash化したIP: ${hashedIp}, テキスト: ${requestBody.text},ボタンテキスト: ${requestBody.buttonText},リンクテキスト: ${requestBody.linkText},
        リンクURL: ${requestBody.linkUrl},セレクトボックス：${requestBody.selectBoxName},セレクトボックスID：${requestBody.selectBoxNameId},
        ラジオボタン名：${requestBody.radioButtonName},ラジオボタンラベル名: ${requestBody.labelText},動画再生時間（秒）:${requestBody.videoPlayedTime},ymd日付: ${dateData.ymdDate}, ymdhmsm日付: ${dateData.ymdhmsmDate}`);
