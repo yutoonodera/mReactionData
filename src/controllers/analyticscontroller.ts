@@ -40,8 +40,7 @@ export const handleAnalyticsPost = (req: Request, res: Response) => {
       }
       //ホスト名、パス名、行動、Hash化したIP,テキスト,ボタンテキスト,リンクテキスト,リンクURL,セレクトボックス,セレクトボックスID,ラジオボタン名,ラジオボタンラベル名,動画再生時間（秒）,年月日,年月日分秒ミリ秒;
       //CSV出力かつ、DBテーブルに入れるので順番は大事
-      const postData = `${requestBody.hostname},${requestBody.path},${requestBody.action},${hashedIp},${requestBody.text},${requestBody.buttonText}, ${requestBody.linkText},${requestBody.linkUrl},${requestBody.selectBoxName}
-      ,${requestBody.selectBoxNameId},${requestBody.radioButtonName},${requestBody.labelText},${requestBody.videoPlayedTime},${dateData.ymdDate},${dateData.ymdhmsmDate}`;
+      const postData = `${requestBody.hostname},${requestBody.path},${requestBody.action},${hashedIp},${requestBody.text},${requestBody.buttonText}, ${requestBody.linkText},${requestBody.linkUrl},${requestBody.selectBoxName},${requestBody.selectBoxNameId},${requestBody.radioButtonName},${requestBody.labelText},${requestBody.videoPlayedTime},${dateData.ymdDate},${dateData.ymdhmsmDate}`;
       redis.set(requestBody.hostname+'_'+requestBody.path+'_'+requestBody.action+'_'+uniqueId+'(('+dateData.ymdhmsmDate+'))', postData);
     });
 
